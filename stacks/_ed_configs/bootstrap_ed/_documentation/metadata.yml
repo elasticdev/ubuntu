@@ -1,0 +1,13 @@
+desc: returns metadata to be returned to user
+release: 0.0.1
+categories: 
+   - ed_core
+   - metadata
+   - publish_info
+tags:
+   - ed_run
+   - ed_core
+   - ed
+   - metadata
+   - publish
+   - publish_info
