@@ -10,8 +10,8 @@ def run(stackargs):
     stack.parse.add_required(key="hostname")
     stack.parse.add_required(key="key")
     stack.parse.add_required(key="region",default="us-east-1")
-    stack.parse.add_required(key="image",default=None)
-    stack.parse.add_required(key="image_name",default=None)
+    stack.parse.add_required(key="image",default="null")
+    stack.parse.add_required(key="image_name",default="null")
     stack.parse.add_required(key="image_ref",default="github_13456777:::public::ubuntu.16.04-chef_solo")
 
     # Add substacks
