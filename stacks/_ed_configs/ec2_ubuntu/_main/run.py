@@ -16,7 +16,7 @@ def run(stackargs):
     stack.parse.add_required(key="image_ref",default="github_13456777:::public::ubuntu.16.04-chef_solo")
 
     # Add substacks
-    stack.add_substack('elasticdev:::ubuntu::bootstap_ed')
+    stack.add_substack('elasticdev:::ubuntu::bootstrap_ed')
     stack.add_substack('elasticdev:::aws::ec2_server')
 
     # init the stack namespace
@@ -50,7 +50,7 @@ def run(stackargs):
     inputargs["human_description"] = "Instruction: Creates a Server on Ec2"
     stack.ec2_server.insert(display=None,**inputargs)
 
-    # Call to bootstap to ed
+    # Call to bootstrap_ed to ed
     default_values = {}
     default_values["hostname"] = stack.hostname
     default_values["key"] = stack.key
@@ -61,7 +61,7 @@ def run(stackargs):
     inputargs = {"default_values":default_values}
     inputargs["automation_phase"] = "infrastructure"
     inputargs["human_description"] = "Bootstraps host to Jiffy database"
-    stack.bootstap_ed.insert(display=None,**inputargs)
+    stack.bootstrap_ed.insert(display=None,**inputargs)
 
     return stack.get_results()
 
