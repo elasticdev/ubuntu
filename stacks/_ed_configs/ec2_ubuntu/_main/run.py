@@ -1,5 +1,6 @@
 def run(stackargs):
 
+    # Do not add cluster and instance
     stackargs["add_cluster"] = False
     stackargs["add_instance"] = False
 
