@@ -10,10 +10,11 @@ def run(stackargs):
     # Add default variables
     stack.parse.add_required(key="hostname")
     stack.parse.add_required(key="key")
-    stack.parse.add_required(key="region",default="us-east-1")
-    stack.parse.add_required(key="image",default="null")
-    stack.parse.add_required(key="image_name",default="null")
-    stack.parse.add_required(key="image_ref",default="github_13456777:::public::ubuntu.16.04-chef_solo")
+
+    stack.parse.optional(key="region",default="us-east-1")
+    stack.parse.optional(key="image",default="null")
+    stack.parse.optional(key="image_name",default="null")
+    stack.parse.optional(key="image_ref",default="github_13456777:::public::ubuntu.16.04-chef_solo")
 
     # Add substacks
     stack.add_substack('elasticdev:::ubuntu::bootstrap_ed')
@@ -41,9 +42,9 @@ def run(stackargs):
     default_values["sg_label"] = None
     default_values["tags"] = None
     default_values["comment"] = None
-    default_values["image_ref"] = stackargs.image_ref
-    if stackargs.image: default_values["image"] = stackargs.image
-    if stackargs.image_name: default_values["image_name"] = stackargs.image_name
+    default_values["image_ref"] = stack.image_ref
+    if stack.image: default_values["image"] = stack.image
+    if stack.image_name: default_values["image_name"] = stack.image_name
 
     inputargs = {"default_values":default_values}
     inputargs["automation_phase"] = "infrastructure"
