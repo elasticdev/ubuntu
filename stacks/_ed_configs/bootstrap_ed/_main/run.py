@@ -18,7 +18,7 @@ def run(stackargs):
     order_type = "add-host::api"
     role = "host/add"
 
-    default_values = {"tags":None,"share":"yes"}
+    default_values = {"tags":None}
     default_values["hostname"] = stack.hostname
 
     human_description = "Adding/Recording host = {}".format(stack.hostname)
