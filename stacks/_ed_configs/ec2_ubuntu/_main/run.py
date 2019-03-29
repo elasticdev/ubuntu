@@ -33,7 +33,6 @@ def run(stackargs):
     default_values["size"] = "t2.micro"
     default_values["disksize"] = 40
     default_values["timeout"] = 600
-    default_values["timeout"] = 600
     default_values["security_group"] = "default"
     default_values["placement"] = None
     default_values["vpc"] = None
