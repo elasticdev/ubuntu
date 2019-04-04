@@ -14,7 +14,7 @@ def run(stackargs):
     stack.init_variables()
 
     # Add host to the ed engine
-    pargs = "host add"
+    cmd = "host add"
     order_type = "add-host::api"
     role = "host/add"
 
@@ -24,7 +24,7 @@ def run(stackargs):
     human_description = "Adding/Recording host = {}".format(stack.hostname)
     long_description = "Adds host = {} to Jiffy".format(stack.hostname)
 
-    stack.insert_builtin_cmd(pargs=pargs,
+    stack.insert_builtin_cmd(cmd,
                              order_type=order_type,
                              role=role,
                              human_description=human_description,
@@ -33,7 +33,7 @@ def run(stackargs):
                              default_values=default_values)
 
     # Bootstrap host to the ed engine
-    pargs = "host bootstrap"
+    cmd = "host bootstrap"
     order_type = "bootstrap-host::api"
     role = "host/bootstrap"
 
@@ -43,7 +43,7 @@ def run(stackargs):
     human_description = "Bootstrapping host = {}".format(stack.hostname)
     long_description = "Bootstraps host = {} to Jiffy".format(stack.hostname)
 
-    stack.insert_builtin_cmd(pargs=pargs,
+    stack.insert_builtin_cmd(cmd,
                              order_type=order_type,
                              role=role,
                              human_description=human_description,
