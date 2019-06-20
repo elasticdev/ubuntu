@@ -10,8 +10,8 @@ def run(stackargs):
     # Add default variables
     stack.parse.add_required(key="hostname")
     stack.parse.add_required(key="key")
-
-    stack.parse.add_optional(key="region",default="us-east-1")
+    stack.parse.add_required(key="aws_default_region",default="null")
+    stack.parse.add_required(key="region",default="null")
     stack.parse.add_optional(key="image",default="null")
     stack.parse.add_optional(key="image_name",default="null")
     stack.parse.add_optional(key="image_ref",default="github_13456777:::public::ubuntu.16.04-chef_solo")
@@ -28,8 +28,6 @@ def run(stackargs):
     default_values = {}
     default_values["hostname"] = stack.hostname
     default_values["key"] = stack.key
-    default_values["region"] = stack.region
-
     default_values["size"] = "t2.micro"
     default_values["disksize"] = 40
     default_values["timeout"] = 600
@@ -44,6 +42,8 @@ def run(stackargs):
     default_values["image_ref"] = stack.image_ref
     if stack.image: default_values["image"] = stack.image
     if stack.image_name: default_values["image_name"] = stack.image_name
+    if stack.aws_default_region: default_values["aws_default_region"] = stack.aws_default_region
+    if stack.region: default_values["region"] = stack.region
 
     inputargs = {"default_values":default_values}
     inputargs["automation_phase"] = "infrastructure"
