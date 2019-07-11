@@ -14,7 +14,7 @@ def run(stackargs):
     stack.parse.add_required(key="region",default="null")
     stack.parse.add_optional(key="image",default="null")
     stack.parse.add_optional(key="image_name",default="null")
-    stack.parse.add_optional(key="image_ref",default="github_13456777:::public::ubuntu.16.04-chef_solo")
+    stack.parse.add_optional(key="image_ref",default="elasticdev:::public::ubuntu.16.04-chef_solo")
 
     # Add substacks
     stack.add_substack('elasticdev:::ubuntu::bootstrap_ed')
