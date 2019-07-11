@@ -37,7 +37,7 @@ def run(stackargs):
     default_values["security_group"] = "default"
     default_values["placement"] = None
     default_values["vpc"] = None
-    default_values["vpc_label"] = 'vpc'
+    default_values["vpc_label"] = None
     default_values["sg"] = None
     default_values["sg_label"] = None
     default_values["tags"] = None
