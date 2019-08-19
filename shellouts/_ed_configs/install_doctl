@@ -1,0 +1,8 @@
+export PKG_VERSIO=1.28.0
+export PKG_NAME=doctl-${PKG_VERSION}-linux-amd64
+cd /tmp
+cd /usr/local/src
+wget https://github.com/digitalocean/doctl/releases/download/v${PKG_VERSION}/${PKG_NAME}.tar.gz
+tar xvf ${PKG_NAME}.tar.gz
+rm -f ${PKG_NAME}.tar.gz
+mv doctl /usr/local/bin
