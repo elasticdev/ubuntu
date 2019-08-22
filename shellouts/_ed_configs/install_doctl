@@ -1,4 +1,4 @@
-export PKG_VERSIO=1.28.0
+export PKG_VERSION=1.28.0
 export PKG_NAME=doctl-${PKG_VERSION}-linux-amd64
 cd /tmp
 cd /usr/local/src
