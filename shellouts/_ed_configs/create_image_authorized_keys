@@ -1,2 +1,1 @@
 mv /root/.ssh/authorized_keys /root/authorized_keys
-cat /home/ubuntu/.ssh/authorized_keys >> /root/authorized_keys
