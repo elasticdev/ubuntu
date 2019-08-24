@@ -31,3 +31,5 @@ if not ufw_allows: exit(0)
 for ufw_allow in ufw_allows:
     cmd = "ufw allow {}".format(ufw_allow.strip())
     run_cmd(cmd)
+
+run_cmd("ufw status verbose")
