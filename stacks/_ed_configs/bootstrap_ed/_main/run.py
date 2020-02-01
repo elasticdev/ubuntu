@@ -20,6 +20,7 @@ def run(stackargs):
 
     default_values = {"tags":None}
     default_values["hostname"] = stack.hostname
+    default_values["keyname"] = stack.keyname
 
     human_description = "Adding/Recording host = {}".format(stack.hostname)
     long_description = "Adds host = {} to Jiffy".format(stack.hostname)
