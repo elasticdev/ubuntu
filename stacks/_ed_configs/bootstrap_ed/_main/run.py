@@ -39,7 +39,7 @@ def run(stackargs):
 
     default_values = {"ip_key":"private_ip", "user":"ubuntu"}
     default_values["hostname"] = stack.hostname
-    default_values["key"] = stack.key
+    default_values["keyname"] = stack.key
     human_description = "Bootstrapping host = {}".format(stack.hostname)
     long_description = "Bootstraps host = {} to Jiffy".format(stack.hostname)
 
