@@ -9,7 +9,7 @@ def run(stackargs):
 
     # Add default variables
     stack.parse.add_required(key="hostname")
-    stack.parse.add_required(key="key")
+    stack.parse.add_required(key="keyname")
     stack.parse.add_required(key="aws_default_region",default="null")
     stack.parse.add_required(key="region",default="null")
     stack.parse.add_optional(key="image",default="null")
@@ -30,7 +30,7 @@ def run(stackargs):
     # Call to create the server
     default_values = {}
     default_values["hostname"] = stack.hostname
-    default_values["key"] = stack.key
+    default_values["key"] = stack.keyname
     default_values["size"] = "t2.micro"
     default_values["disksize"] = 40
     default_values["timeout"] = 600
@@ -56,7 +56,7 @@ def run(stackargs):
     # Call to bootstrap_ed to ed
     default_values = {}
     default_values["hostname"] = stack.hostname
-    default_values["key"] = stack.key
+    default_values["keyname"] = stack.keyname
     default_values["ip_key"] = "private_ip"
     default_values["user"] = "ubuntu"
     default_values["tags"] = None
