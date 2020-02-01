@@ -8,7 +8,7 @@ def run(stackargs):
 
     # Add default variables
     stack.parse.add_required(key="hostname")
-    stack.parse.add_required(key="keyname")
+    stack.parse.add_optional(key="keyname",default="null")
 
     # Initialize Variables in stack
     stack.init_variables()
@@ -20,7 +20,7 @@ def run(stackargs):
 
     default_values = {"tags":None}
     default_values["hostname"] = stack.hostname
-    default_values["keyname"] = stack.keyname
+    if stack.keyname: default_values["keyname"] = stack.keyname
 
     human_description = "Adding/Recording host = {}".format(stack.hostname)
     long_description = "Adds host = {} to Jiffy".format(stack.hostname)
