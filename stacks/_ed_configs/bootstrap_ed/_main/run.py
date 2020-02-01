@@ -8,7 +8,7 @@ def run(stackargs):
 
     # Add default variables
     stack.parse.add_required(key="hostname")
-    stack.parse.add_required(key="key")
+    stack.parse.add_required(key="keyname")
 
     # Initialize Variables in stack
     stack.init_variables()
@@ -39,7 +39,7 @@ def run(stackargs):
 
     default_values = {"ip_key":"private_ip", "user":"ubuntu"}
     default_values["hostname"] = stack.hostname
-    default_values["keyname"] = stack.key
+    default_values["keyname"] = stack.keyname
     human_description = "Bootstrapping host = {}".format(stack.hostname)
     long_description = "Bootstraps host = {} to Jiffy".format(stack.hostname)
 
