@@ -30,6 +30,9 @@ def run(stackargs):
     stack.parse.add_optional(key="image",default="null")
     stack.parse.add_optional(key="image_name",default="null")
     stack.parse.add_optional(key="image_ref",default="null")
+    stack.parse.add_optional(key="size",default="t3.micro")
+    stack.parse.add_optional(key="disksize",default="20")
+    stack.parse.add_optional(key="ip_key",default="public_ip")
 
     # tags and labels
     stack.parse.add_optional(key="tags",default="null")
@@ -49,11 +52,11 @@ def run(stackargs):
     # Call to create the server
     default_values = {"hostname":stack.hostname}
     default_values["key"] = stack.keyname
-    default_values["size"] = "t2.micro"
-    default_values["disksize"] = 40
+    default_values["size"] = stack.size
+    default_values["disksize"] = stack.disksize
     default_values["timeout"] = 600
-    default_values["tags"] = None
     default_values["aws_default_region"] = stack.aws_default_region
+    if stack.tags: default_values["tags"] = stack.tags
 
     # vpc
     if stack.vpc_name: default_values["vpc_name"] = stack.vpc_name
@@ -84,7 +87,7 @@ def run(stackargs):
     # Call to bootstrap_ed to ed
     default_values = {"hostname":stack.hostname}
     default_values["keyname"] = stack.keyname
-    default_values["ip_key"] = "private_ip"
+    default_values["ip_key"] = stack.ip_key
     default_values["user"] = "ubuntu"
     if stack.tags: default_values["tags"] = stack.tags
     if stack.labels: default_values["labels"] = stack.labels
