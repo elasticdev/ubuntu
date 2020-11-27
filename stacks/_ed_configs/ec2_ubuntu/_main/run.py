@@ -15,16 +15,26 @@ def run(stackargs):
     stack.parse.add_required(key="aws_default_region",default="us-east-1")
     stack.parse.add_required(key="region",default="null")
 
+    # vpc info
     stack.parse.add_optional(key="vpc_name",default="null")
     stack.parse.add_optional(key="vpc_id",default="null")
+
+    # security groups
     stack.parse.add_optional(key="security_groups",default="null")
     stack.parse.add_optional(key="security_groups_ids",default="null")
+
+    # subnet_id
     stack.parse.add_optional(key="subnet",default="null")
     stack.parse.add_optional(key="subnet_id",default="null")
 
+    # image info
     stack.parse.add_optional(key="image",default="null")
     stack.parse.add_optional(key="image_name",default="null")
-    stack.parse.add_optional(key="image_ref",default="elasticdev:::public::ubuntu.16.04-chef_solo")
+    stack.parse.add_optional(key="image_ref",default="null")
+
+    # tags and labels
+    stack.parse.add_optional(key="tags",default="null")
+    stack.parse.add_optional(key="labels",default="null")
 
     # Add substacks
     stack.add_substack('elasticdev:::ubuntu::bootstrap_ed')
@@ -38,14 +48,12 @@ def run(stackargs):
     stack.init_substacks()
 
     # Call to create the server
-    default_values = {}
-    default_values["hostname"] = stack.hostname
+    default_values = {"hostname":stack.hostname}
     default_values["key"] = stack.keyname
     default_values["size"] = "t2.micro"
     default_values["disksize"] = 40
     default_values["timeout"] = 600
     default_values["tags"] = None
-    default_values["image_ref"] = stack.image_ref
     default_values["aws_default_region"] = stack.aws_default_region
 
     # vpc
@@ -63,7 +71,11 @@ def run(stackargs):
     # ami image
     if stack.image: default_values["image"] = stack.image
     if stack.image_name: default_values["image_name"] = stack.image_name
-    if stack.region: default_values["region"] = stack.region
+    if stack.image_ref: default_values["image_ref"] = stack.image_ref
+
+    # tags and labels
+    if stack.tags: default_values["tags"] = stack.tags
+    if stack.labels: default_values["labels"] = stack.labels
 
     inputargs = {"default_values":default_values}
     inputargs["automation_phase"] = "infrastructure"
@@ -75,7 +87,8 @@ def run(stackargs):
     default_values["keyname"] = stack.keyname
     default_values["ip_key"] = "private_ip"
     default_values["user"] = "ubuntu"
-    default_values["tags"] = None
+    if stack.tags: default_values["tags"] = stack.tags
+    if stack.labels: default_values["labels"] = stack.labels
 
     inputargs = {"default_values":default_values}
     inputargs["automation_phase"] = "infrastructure"
@@ -83,4 +96,3 @@ def run(stackargs):
     stack.bootstrap_ed.insert(display=None,**inputargs)
 
     return stack.get_results()
-
