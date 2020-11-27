@@ -1,8 +1,8 @@
 def run(stackargs):
 
-    #########################################
+    # Testingyoyo
+
     # Do not add cluster and instance
-    #########################################
     stackargs["add_cluster"] = False
     stackargs["add_instance"] = False
 
@@ -13,7 +13,6 @@ def run(stackargs):
     stack.parse.add_required(key="hostname")
     stack.parse.add_required(key="keyname")
     stack.parse.add_required(key="aws_default_region",default="us-east-1")
-    stack.parse.add_required(key="region",default="null")
 
     # vpc info
     stack.parse.add_optional(key="vpc_name",default="null")
