@@ -14,6 +14,8 @@ def run(stackargs):
     stack.parse.add_required(key="keyname")
     stack.parse.add_required(key="aws_default_region",default="us-east-1")
 
+    stack.parse.add_optional(key="register_to_ed",default="null")
+
     # vpc info
     stack.parse.add_optional(key="vpc_name",default="null")
     stack.parse.add_optional(key="vpc_id",default="null")
@@ -84,17 +86,19 @@ def run(stackargs):
     inputargs["human_description"] = "Instruction: Creates a Server on Ec2"
     stack.ec2_server.insert(display=None,**inputargs)
 
-    # Call to bootstrap_ed to ed
-    default_values = {"hostname":stack.hostname}
-    default_values["keyname"] = stack.keyname
-    default_values["ip_key"] = stack.ip_key
-    default_values["user"] = "ubuntu"
-    if stack.tags: default_values["tags"] = stack.tags
-    if stack.labels: default_values["labels"] = stack.labels
+    if stack.register_to_ed:
 
-    inputargs = {"default_values":default_values}
-    inputargs["automation_phase"] = "infrastructure"
-    inputargs["human_description"] = "Bootstraps host to Jiffy database"
-    stack.bootstrap_ed.insert(display=None,**inputargs)
+        # Call to bootstrap_ed to ed
+        default_values = {"hostname":stack.hostname}
+        default_values["keyname"] = stack.keyname
+        default_values["ip_key"] = stack.ip_key
+        default_values["user"] = "ubuntu"
+        if stack.tags: default_values["tags"] = stack.tags
+        if stack.labels: default_values["labels"] = stack.labels
+
+        inputargs = {"default_values":default_values}
+        inputargs["automation_phase"] = "infrastructure"
+        inputargs["human_description"] = "Bootstraps host to Jiffy database"
+        stack.bootstrap_ed.insert(display=None,**inputargs)
 
     return stack.get_results()
