@@ -14,7 +14,7 @@ def run(stackargs):
     stack.parse.add_required(key="keyname")
     stack.parse.add_required(key="aws_default_region",default="us-east-1")
 
-    stack.parse.add_optional(key="register_to_ed",default="True")
+    stack.parse.add_optional(key="register_to_ed",default=True,null_allowed=True)
 
     # vpc info
     stack.parse.add_optional(key="vpc_name",default="null")
