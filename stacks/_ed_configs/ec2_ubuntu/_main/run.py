@@ -36,6 +36,10 @@ def run(stackargs):
     stack.parse.add_optional(key="disksize",default="20")
     stack.parse.add_optional(key="ip_key",default="public_ip")
 
+    stack.parse.add_optional(key="extra_disk",default="null")
+    stack.parse.add_optional(key="extra_disk_mntpt",default="null")
+    stack.parse.add_optional(key="extra_disk_fstype",default="null")
+
     # tags and labels
     stack.parse.add_optional(key="tags",default="null")
     stack.parse.add_optional(key="labels",default="null")
@@ -80,6 +84,11 @@ def run(stackargs):
     # tags and labels
     if stack.tags: default_values["tags"] = stack.tags
     if stack.labels: default_values["labels"] = stack.labels
+
+    # extra disk
+    if stack.extra_disk: default_values["extra_disk"] = stack.extra_disk
+    if stack.extra_disk_mntpt: default_values["extra_disk_mntpt"] = stack.extra_disk_mntpt
+    if stack.extra_disk_fstype: default_values["extra_disk_fstype"] = stack.extra_disk_fstype
 
     inputargs = {"default_values":default_values}
     inputargs["automation_phase"] = "infrastructure"
