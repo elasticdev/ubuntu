@@ -36,9 +36,11 @@ def run(stackargs):
     stack.parse.add_optional(key="disksize",default="20")
     stack.parse.add_optional(key="ip_key",default="public_ip")
 
-    stack.parse.add_optional(key="extra_disk",default="null")
-    stack.parse.add_optional(key="extra_disk_mntpt",default="null")
-    stack.parse.add_optional(key="extra_disk_fstype",default="null")
+    # extra disk
+    stack.parse.add_optional(key="volume_name",default="null")
+    stack.parse.add_optional(key="volume_size",default="null")
+    stack.parse.add_optional(key="volume_mntpt",default="null")
+    stack.parse.add_optional(key="volume_fstype",default="null")
 
     # tags and labels
     stack.parse.add_optional(key="tags",default="null")
@@ -86,9 +88,10 @@ def run(stackargs):
     if stack.labels: default_values["labels"] = stack.labels
 
     # extra disk
-    if stack.extra_disk: default_values["extra_disk"] = stack.extra_disk
-    if stack.extra_disk_mntpt: default_values["extra_disk_mntpt"] = stack.extra_disk_mntpt
-    if stack.extra_disk_fstype: default_values["extra_disk_fstype"] = stack.extra_disk_fstype
+    if stack.volume_size: default_values["volume_size"] = stack.volume_size
+    if stack.volume_name: default_values["volume_name"] = stack.volume_name
+    if stack.volume_mntpt: default_values["volume_mntpt"] = stack.volume_mntpt
+    if stack.volume_fstype: default_values["volume_fstype"] = stack.volume_fstype
 
     inputargs = {"default_values":default_values}
     inputargs["automation_phase"] = "infrastructure"
