@@ -1,7 +1,5 @@
 def run(stackargs):
 
-    # Testingyoyo
-
     # Do not add cluster and instance
     stackargs["add_cluster"] = False
     stackargs["add_instance"] = False
@@ -49,8 +47,7 @@ def run(stackargs):
     # Add substacks
     stack.add_substack('elasticdev:::ubuntu::bootstrap_ed')
 
-    # Revisit and replace with ec2_server later
-    #stack.add_substack('elasticdev:::aws::ec2_server_builtin',"ec2_server")
+    # Revisit and replace with ec2_server?
     stack.add_substack('elasticdev:::aws::ec2_server',"ec2_server")
 
     # init the stack namespace
