@@ -12,6 +12,8 @@ def run(stackargs):
     stack.parse.add_required(key="keyname")
     stack.parse.add_required(key="aws_default_region",default="us-east-1")
 
+    stack.parse.add_optional(key="config_network",choices=["public","private"],default="public")
+
     stack.parse.add_optional(key="register_to_ed",default=True,null_allowed=True)
 
     # vpc info
@@ -61,6 +63,7 @@ def run(stackargs):
     default_values["disksize"] = stack.disksize
     default_values["timeout"] = 600
     default_values["aws_default_region"] = stack.aws_default_region
+    default_values["config_network"] = stack.config_network
     if stack.tags: default_values["tags"] = stack.tags
 
     # vpc
