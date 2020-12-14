@@ -41,12 +41,3 @@ infrastructure:
            - reference: aws_2
              orchestration: true
 ```
-
-**Test:**
-
-yoyo
-yoy1
-yoyo4
-yoyo5
-yoyo5
-yoyo5
