@@ -41,28 +41,4 @@ infrastructure:
            - reference: aws_2
              orchestration: true
 ```
-yoyo5
-yoyo5
-yoyo5
-yoyo5
-yoyo5
-yoyo5
-yoyo5
-yoyo5
-yoyo5
-yoyo5
-yoyo5
-yoyo5
-yoyo5
-yoyo5
-yoyo5
-yoyo5
-yoyo5
-yoyo5
-yoyo5
-yoyo5
-yoyo5
-yoyo5
-yoyo5
-yoyo5
-yoyo5
+yoyo
