@@ -1,7 +1,7 @@
 **Description**
 
   - This stack wrappers around Ec2 creation of Ubuntu instance
-  - Optionally, we can also bootstrap the Ubuntu instance to ElasticDev
+  - Optionally, we can bootstrap the Ubuntu instance to ElasticDev
 
 **Required**
 
@@ -41,4 +41,3 @@ infrastructure:
            - reference: aws_2
              orchestration: true
 ```
-yoyo101
