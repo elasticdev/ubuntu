@@ -1,7 +1,7 @@
 **Description**
 
   - This stack wrappers around Ec2 creation of Ubuntu instance
-  - Optionally, we can bootstrap the Ubuntu instance to ElasticDev
+  - Optionally, we can bootstrap the Ubuntu instance to ElasticDev (ED)
 
 **Required**
 
