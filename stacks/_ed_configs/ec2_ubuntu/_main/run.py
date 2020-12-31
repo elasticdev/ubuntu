@@ -88,10 +88,13 @@ def run(stackargs):
     if stack.labels: default_values["labels"] = stack.labels
 
     # extra disk
-    if stack.volume_size: default_values["volume_size"] = stack.volume_size
-    if stack.volume_name: default_values["volume_name"] = stack.volume_name
-    if stack.volume_mountpoint: default_values["volume_mountpoint"] = stack.volume_mountpoint
-    if stack.volume_fstype: default_values["volume_fstype"] = stack.volume_fstype
+    if stack.volume_size and stack.volume_name: 
+        # minimal to create the disk
+        default_values["volume_size"] = stack.volume_size
+        default_values["volume_name"] = stack.volume_name
+        # to optionally format and mount volume
+        if stack.volume_fstype: default_values["volume_fstype"] = stack.volume_fstype
+        if stack.volume_mountpoint: default_values["volume_mountpoint"] = stack.volume_mountpoint
 
     inputargs = {"default_values":default_values}
     inputargs["automation_phase"] = "infrastructure"
