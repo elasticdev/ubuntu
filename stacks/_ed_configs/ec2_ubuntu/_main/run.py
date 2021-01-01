@@ -1,3 +1,24 @@
+def _insert_volume_params(stack,values=None):
+
+    if not values: values = {}
+
+    # minimal to create the disk 
+    # is volume_size and volume_name
+    if not stack.volume_size: return values
+    if not stack.volume_name: return values
+
+    values["volume_size"] = stack.volume_size
+    values["volume_name"] = stack.volume_name
+
+    # minimal to create the disk
+    # to optionally format and mount volume
+    if not stack.volume_fstype: return values
+    if not stack.volume_mountpoint: return values
+    values["volume_fstype"] = stack.volume_fstype
+    values["volume_mountpoint"] = stack.volume_mountpoint
+
+    return values
+
 def run(stackargs):
 
     # Do not add cluster and instance
@@ -87,14 +108,8 @@ def run(stackargs):
     if stack.tags: default_values["tags"] = stack.tags
     if stack.labels: default_values["labels"] = stack.labels
 
-    # extra disk
-    if stack.volume_size and stack.volume_name: 
-        # minimal to create the disk
-        default_values["volume_size"] = stack.volume_size
-        default_values["volume_name"] = stack.volume_name
-        # to optionally format and mount volume
-        if stack.volume_fstype: default_values["volume_fstype"] = stack.volume_fstype
-        if stack.volume_mountpoint: default_values["volume_mountpoint"] = stack.volume_mountpoint
+    # see if extra disk is required
+    _insert_volume_params(stack,default_values)
 
     inputargs = {"default_values":default_values}
     inputargs["automation_phase"] = "infrastructure"
