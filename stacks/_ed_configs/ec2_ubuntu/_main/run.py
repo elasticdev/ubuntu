@@ -53,6 +53,9 @@ def run(stackargs):
     stack.parse.add_optional(key="image",default="null")
     stack.parse.add_optional(key="image_name",default="null")
     stack.parse.add_optional(key="image_ref",default="null")
+    stack.parse.add_optional(key="image_filter",default="null")
+    stack.parse.add_optional(key="image_owner",default="null")
+
     stack.parse.add_optional(key="size",default="t3.micro")
     stack.parse.add_optional(key="disksize",default="20")
     stack.parse.add_optional(key="ip_key",default="public_ip")
@@ -103,6 +106,8 @@ def run(stackargs):
     if stack.image: default_values["image"] = stack.image
     if stack.image_name: default_values["image_name"] = stack.image_name
     if stack.image_ref: default_values["image_ref"] = stack.image_ref
+    if stack.image_filter: default_values["image_filter"] = stack.image_filter
+    if stack.image_owner: default_values["image_owner"] = stack.image_owner
 
     # tags and labels
     if stack.tags: default_values["tags"] = stack.tags
