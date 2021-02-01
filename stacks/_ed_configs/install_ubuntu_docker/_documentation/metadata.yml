@@ -1,0 +1,9 @@
+desc: The stack install docker on ubuntu
+release: 0.0.1
+categories: 
+   - docker
+   - ubuntu
+tags:
+   - docker
+   - ubuntu
+   - infrastructure
