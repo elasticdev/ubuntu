@@ -101,6 +101,10 @@ def run(stackargs):
     if stack.security_groups_ids: default_values["security_groups_ids"] = stack.security_groups_ids
 
     # ami image
+    # Testingyoyo
+    stack.logger.debug("a"*32)
+    stack.logger.debug("a"*32)
+    stack.logger.debug("a"*32)
     if stack.image: default_values["image"] = stack.image
     if stack.image_name: default_values["image_name"] = stack.image_name
     if stack.image_ref: default_values["image_ref"] = stack.image_ref
