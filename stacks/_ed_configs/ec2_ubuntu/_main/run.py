@@ -72,8 +72,6 @@ def run(stackargs):
 
     # Add substacks
     stack.add_substack('elasticdev:::ubuntu::bootstrap_ed')
-
-    # Revisit and replace with ec2_server?
     stack.add_substack('elasticdev:::aws::ec2_server',"ec2_server")
 
     # init the stack namespace
