@@ -78,8 +78,8 @@ def run(stackargs):
     stack.parse.add_optional(key="labels",default="null")
 
     # Add substacks
-    stack.add_substack('elasticdev:::ubuntu::bootstrap_ed')
-    stack.add_substack('elasticdev:::aws::ec2_server',"ec2_server")
+    stack.add_substack('elasticdev:::bootstrap_ed')
+    stack.add_substack('elasticdev:::ec2_server')
 
     # init the stack namespace
     stack.init_variables()
@@ -132,13 +132,7 @@ def run(stackargs):
     # see if extra disk is required
     _insert_volume_params(stack,default_values)
 
-    # hellohello
-    stack.logger.debug("")
-    stack.logger.debug("")
-    stack.logger.debug(default_values)
-    stack.logger.debug("")
-    stack.logger.debug("")
-    raise Exception("hellohello")
+    #stack.logger.debug(default_values)
 
     inputargs = {"default_values":default_values}
     inputargs["automation_phase"] = "infrastructure"
