@@ -132,6 +132,14 @@ def run(stackargs):
     # see if extra disk is required
     _insert_volume_params(stack,default_values)
 
+    # hellohello
+    stack.logger.debug("")
+    stack.logger.debug("")
+    stack.logger.debug(default_values)
+    stack.logger.debug("")
+    stack.logger.debug("")
+    raise Exception("hellohello")
+
     inputargs = {"default_values":default_values}
     inputargs["automation_phase"] = "infrastructure"
     inputargs["human_description"] = "Instruction: Creates a Server on Ec2"
