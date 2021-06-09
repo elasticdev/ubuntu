@@ -47,14 +47,14 @@ def run(stackargs):
     # security groups
     # hellohello
     stack.parse.add_optional(key="sg_id",default="null")
-    stack.parse.add_optional(key="security_groups",default="null")
-    stack.parse.add_optional(key="security_groups_ids",default="null")
+    stack.parse.add_optional(key="security_groups")
+    stack.parse.add_optional(key="security_groups_ids")
 
     # subnet_id
     # hellohello
     stack.parse.add_optional(key="subnet",default="null")
-    stack.parse.add_optional(key="subnet_id",default="null")
-    stack.parse.add_optional(key="subnet_ids",default="null")  # expect CSV
+    stack.parse.add_optional(key="subnet_id")
+    stack.parse.add_optional(key="subnet_ids")  # expect CSV
 
     # image info
     stack.parse.add_optional(key="image",default="null")
@@ -102,20 +102,20 @@ def run(stackargs):
         default_values["vpc_name"] = stack.vpc_name
 
     # subnet
-    if stack.subnet_ids: 
-        subnet_ids = stack.subnet_ids.strip().split(",")
-        default_values["subnet_id"] = random.choice(subnet_ids)
     if stack.subnet_id: 
         default_values["subnet_id"] = stack.subnet_id
-    elif stack.subnet: 
+    elif hasattr(stack,"subnet_ids") and stack.subnet_ids: 
+        subnet_ids = stack.subnet_ids.strip().split(",")
+        default_values["subnet_id"] = random.choice(subnet_ids)
+    elif hasattr(stack,"subnet") and stack.subnet: 
         default_values["subnet"] = stack.subnet
 
     # security groups
     if stack.sg_id: 
         default_values["security_groups_ids"] = [ stack.sg_id ]
-    elif stack.security_groups_ids: 
+    elif hasattr(stack,"security_groups_ids") and stack.security_groups_ids: 
         default_values["security_groups_ids"] = stack.security_groups_ids
-    elif stack.security_groups: 
+    elif hasattr(stack,"security_groups") and stack.security_groups: 
         default_values["security_groups"] = stack.security_groups
 
     # ami image
