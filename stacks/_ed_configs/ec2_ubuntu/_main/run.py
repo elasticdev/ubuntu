@@ -47,14 +47,14 @@ def run(stackargs):
     # security groups
     # hellohello
     stack.parse.add_optional(key="sg_id",default="null")
-    stack.parse.add_optional(key="security_groups")
-    stack.parse.add_optional(key="security_groups_ids")
+    stack.parse.add_optional(key="security_groups",default="null")
+    stack.parse.add_optional(key="security_groups_ids",default="null")
 
     # subnet_id
     # hellohello
     stack.parse.add_optional(key="subnet",default="null")
-    stack.parse.add_optional(key="subnet_id")
-    stack.parse.add_optional(key="subnet_ids")  # expect CSV
+    stack.parse.add_optional(key="subnet_id",default="null")
+    stack.parse.add_optional(key="subnet_ids",default="null")  # expect CSV
 
     # image info
     stack.parse.add_optional(key="image",default="null")
@@ -85,6 +85,24 @@ def run(stackargs):
     stack.init_variables()
     stack.init_substacks()
 
+    ##################################################
+    # determine specific variables
+    ##################################################
+
+    # subnet
+    if not stack.subnet_id and stack.subnet_ids: 
+        _subnet_ids = stack.subnet_ids.strip().split(",")
+        _subnet_id = random.choice(_subnet_ids)
+        stack.set_variable("subnet_id",_subnet_id)
+
+    # security groups
+    if not stack.security_groups_ids and stack.sg_id: 
+        stack.set_variable("security_groups_ids",[ stack.sg_id ])
+
+    ##################################################
+    # Main
+    ##################################################
+
     # Call to create the server
     default_values = {"hostname":stack.hostname}
     default_values["key"] = stack.keyname
@@ -104,18 +122,13 @@ def run(stackargs):
     # subnet
     if stack.subnet_id: 
         default_values["subnet_id"] = stack.subnet_id
-    elif hasattr(stack,"subnet_ids") and stack.subnet_ids: 
-        subnet_ids = stack.subnet_ids.strip().split(",")
-        default_values["subnet_id"] = random.choice(subnet_ids)
-    elif hasattr(stack,"subnet") and stack.subnet: 
+    elif stack.subnet: 
         default_values["subnet"] = stack.subnet
 
     # security groups
-    if stack.sg_id: 
-        default_values["security_groups_ids"] = [ stack.sg_id ]
-    elif hasattr(stack,"security_groups_ids") and stack.security_groups_ids: 
+    if stack.security_groups_ids: 
         default_values["security_groups_ids"] = stack.security_groups_ids
-    elif hasattr(stack,"security_groups") and stack.security_groups: 
+    elif stack.security_groups: 
         default_values["security_groups"] = stack.security_groups
 
     # ami image
@@ -132,7 +145,8 @@ def run(stackargs):
     # see if extra disk is required
     _insert_volume_params(stack,default_values)
 
-    #stack.logger.debug(default_values)
+    # hellohello
+    stack.logger.debug(default_values)
 
     inputargs = {"default_values":default_values}
     inputargs["automation_phase"] = "infrastructure"
