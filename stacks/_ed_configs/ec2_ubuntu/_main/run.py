@@ -47,8 +47,8 @@ def run(stackargs):
     # security groups
     # hellohello
     stack.parse.add_optional(key="sg_id",default="null")
+    stack.parse.add_optional(key="security_group_ids",default="null")
     stack.parse.add_optional(key="security_groups",default="null")
-    stack.parse.add_optional(key="security_groups_ids",default="null")
 
     # subnet_id
     # hellohello
@@ -96,8 +96,8 @@ def run(stackargs):
         stack.set_variable("subnet_id",_subnet_id)
 
     # security groups
-    if not stack.security_groups_ids and stack.sg_id: 
-        stack.set_variable("security_groups_ids",[ stack.sg_id ])
+    if not stack.security_group_ids and stack.sg_id: 
+        stack.set_variable("security_group_ids",[ stack.sg_id ])
 
     ##################################################
     # Main
@@ -126,8 +126,8 @@ def run(stackargs):
         default_values["subnet"] = stack.subnet
 
     # security groups
-    if stack.security_groups_ids: 
-        default_values["security_groups_ids"] = stack.security_groups_ids
+    if stack.security_group_ids: 
+        default_values["security_group_ids"] = stack.security_group_ids
     elif stack.security_groups: 
         default_values["security_groups"] = stack.security_groups
 
