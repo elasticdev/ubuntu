@@ -40,18 +40,15 @@ def run(stackargs):
     stack.parse.add_optional(key="register_to_ed",default=True,null_allowed=True)
 
     # vpc info
-    # hellohello
     stack.parse.add_optional(key="vpc_name",default="null")
     stack.parse.add_optional(key="vpc_id",default="null")
 
     # security groups
-    # hellohello
     stack.parse.add_optional(key="sg_id",default="null")
     stack.parse.add_optional(key="security_group_ids",default="null")
     stack.parse.add_optional(key="security_groups",default="null")
 
     # subnet_id
-    # hellohello
     stack.parse.add_optional(key="subnet",default="null")
     stack.parse.add_optional(key="subnet_id",default="null")
     stack.parse.add_optional(key="subnet_ids",default="null")  # expect CSV
@@ -145,8 +142,7 @@ def run(stackargs):
     # see if extra disk is required
     _insert_volume_params(stack,default_values)
 
-    # hellohello
-    stack.logger.debug(default_values)
+    #stack.logger.debug(default_values)
 
     inputargs = {"default_values":default_values}
     inputargs["automation_phase"] = "infrastructure"
