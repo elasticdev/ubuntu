@@ -36,7 +36,6 @@ def run(stackargs):
     stack.parse.add_required(key="aws_default_region",default="us-east-1")
 
     stack.parse.add_optional(key="config_network",choices=["public","private"],default="public")
-
     stack.parse.add_optional(key="register_to_ed",default=True,null_allowed=True)
 
     # vpc info
@@ -87,6 +86,16 @@ def run(stackargs):
     ##################################################
 
     # subnet
+    stack.logger.debug('f1'*32)
+    stack.logger.debug('f1'*32)
+    stack.logger.debug(stack.subnet_id)
+    stack.logger.debug('f1'*32)
+    stack.logger.debug(stack.subnet_ids)
+    stack.logger.debug('f2'*32)
+    stack.logger.debug('f2'*32)
+    # hellohello6
+    raise
+
     if not stack.subnet_id and stack.subnet_ids: 
         _subnet_ids = stack.subnet_ids.strip().split(",")
         _subnet_id = random.choice(_subnet_ids)
