@@ -86,16 +86,6 @@ def run(stackargs):
     ##################################################
 
     # subnet
-    stack.logger.debug('f1'*32)
-    stack.logger.debug('f1'*32)
-    stack.logger.debug(stack.subnet_id)
-    stack.logger.debug('f1'*32)
-    stack.logger.debug(stack.subnet_ids)
-    stack.logger.debug('f2'*32)
-    stack.logger.debug('f2'*32)
-    # hellohello6
-    raise
-
     if not stack.subnet_id and stack.subnet_ids: 
         _subnet_ids = stack.subnet_ids.strip().split(",")
         _subnet_id = random.choice(_subnet_ids)
